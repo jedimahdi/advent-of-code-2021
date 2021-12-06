@@ -26,12 +26,10 @@ part1 numbers lastNumber boards | null winnerBoards = part1 (tail numbers) (head
                         | otherwise = sumOfUnmarked (head winnerBoards) * lastNumber
                 where winnerBoards = filter isWinnerBoard boards
 
-
 part2 :: DrawnNumbers -> Int -> [Int] -> [Board] -> Int
 part2 numbers lastNumber lastWinners boards | length winnerBoards /= length boards = part2 (tail numbers) (head numbers) (map fst winnerBoards) (applyNumber (head numbers) boards)
                         | otherwise = sumOfUnmarked (boards !! head ([0..length boards - 1] \\ lastWinners)) * lastNumber
                 where winnerBoards = filter (isWinnerBoard . snd) . zip [0..] $ boards
-
 
 parseBoards :: [String] -> [Board]
 parseBoards = map (map (map ((, NotMarked) . (read @Int)) . filter (/= "") . split ' '))
@@ -49,4 +47,3 @@ main = do
   let boards = parseBoards $ drop 2 inputLines
   print $ part1 numbers 0 boards
   print $ part2 numbers 0 [] boards
-
