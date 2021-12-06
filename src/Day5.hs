@@ -46,7 +46,6 @@ parseLines = map parseLine . lines
 
 main :: IO ()
 main = do
-  inputLines <- readFile "inputs/input5"
-  let lines = parseLines inputLines
+  lines <- parseLines <$> readFile "inputs/input5"
   print $ solution findHorizenAndVerticalCordsFromLine lines
   print $ solution findAllCordsFromLine lines
