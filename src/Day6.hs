@@ -8,8 +8,8 @@ initTally :: [Int] -> Tally
 initTally xs = map (\x -> length $ filter (== x) xs) [0..8]
 
 step :: Tally -> Tally
-step [zero, one, two,   three, four, five,       six,   seven, eight]
-   = [one,  two, three, four,  five, six, seven + zero, eight, zero]
+step [zero, one, two,   three, four, five, six,          seven, eight]
+   = [one,  two, three, four,  five, six,  seven + zero, eight, zero]
 step _ = error "not possible"
 
 solution :: Int -> Tally -> Int
